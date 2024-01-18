@@ -1,0 +1,17 @@
+# import the math module, so I can use the square root function
+import math
+
+# prompt  user to input length and width then store them in their respective variables
+length = float(input("Enter the length: "))
+width = float(input("Enter the width: "))
+
+# use formulas to calculate perimeter, area, and diagonal and round to two decimal places
+# store calculations in respective variables I just declared
+perimeter = round(2*(length+width),2)
+area = round(length*width,2)
+diagonal = round(math.sqrt(length*length+width*width),2)
+
+# output the perimeter, area, and diagonal
+print(f"Rectangle perimeter: {perimeter}")
+print(f"Rectangle area: {area}")
+print(f"Rectangle diagonal: {diagonal}")
