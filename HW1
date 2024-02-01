@@ -1,0 +1,51 @@
+#print the available movies and times
+print("Available movies today: ")
+print ("A)12 Strong:        1)2:30   2)4:40  3)7:50  4)10:50")
+print ("B)Coco:             1)12:40  2)3:45")
+print ("C)The Post:         1)12:45  2)3:35  3)7:05  4)9:55")
+
+#get user movie choice and showtime input and store them in respective vars
+movie = input("Movie choice:    ")
+showtime = (input("Showtime:        "))
+
+#use series of nested if elif else statements
+#first if statement checks movie choice is valid, if yes, second checks showtime
+#if both are valid, prompts user for number of adult and child tickets
+#if both are valid, program calculates total price and outputs the value
+#if at any point the input is not valid, if statement will fail and else will print "Invalid option"
+if(movie == "A"):
+    if ((showtime == "1" or showtime == "2") or (showtime == "3" or showtime == "4")):
+        atix = float(input("Adult tickets:   "))
+        ctix = float(input("Kid tickets:     "))
+        if (atix + ctix <= 30): print("Total cost:      $" + str(round(12.45 * atix + 9.68 * ctix, 2)))
+        else: (print("Invalid option; please restart app..."))
+    else:
+        print("Invalid option; please restart app...")
+elif(movie == "B"):
+    if (showtime == "1"):
+        atix = float(input("Adult tickets:   "))
+        ctix = float(input("Kid tickets:     "))
+        if (atix + ctix <= 30): print("Total cost:      $" + str(round(11.17 * atix + 8 * ctix, 2)))
+        else: print("Invalid option; please restart app...")
+    elif (showtime == "2"):
+        atix = float(input("Adult tickets:   "))
+        ctix = float(input("Kid tickets:     "))
+        if (atix + ctix <= 30): print("Total cost:      $" + str(round(12.45 * atix + 9.68 * ctix, 2)))
+        else: print("Invalid option; please restart app...")
+    else:
+        print("Invalid option; please restart app...")
+elif(movie == "C"):
+    if (showtime == "1"):
+        atix = float(input("Adult tickets:   "))
+        ctix = float(input("Kid tickets:     "))
+        if (atix + ctix <= 30): print("Total cost:      $" + str(round(11.17 * atix + 8 * ctix, 2)))
+        else: print("Invalid option; please restart app...")
+    elif ((showtime == "2" or showtime == "3") or showtime == "4"):
+        atix = float(input("Adult tickets:   "))
+        ctix = float(input("Kid tickets:     "))
+        if (atix + ctix <= 30): print("Total cost:      $" + str(round(12.45 * atix + 9.68 * ctix, 2)))
+        else: print("Invalid option; please restart app...")
+    else:
+        print("Invalid option; please restart app...")
+else:
+    print("Invalid option; please restart app...")
