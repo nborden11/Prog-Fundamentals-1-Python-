@@ -1,0 +1,83 @@
+import math
+
+#initialize global variables that will be used later in program
+currentResult = 0.0
+sumCalculations = 0.0
+numCalculations = 0
+outsideLoop = True
+
+#function that prints the current result and calculator menu upon call
+def print_menu():
+    print("Current Result: " + str(currentResult))
+    print("\nCalculator Menu\n---------------\n0. Exit Program\n1. Addition\n2. Subtraction\n3. Multiplication"
+          "\n4. Division\n5. Exponentiation\n6. Logarithm\n7. Display Average")
+
+#nested while loops that are responsible for repetiion within the program
+while outsideLoop:
+    print_menu()
+    while True: #inside while loop is used in case the selection is invalid or  7 is used before an average can be calculated
+        selection = int(input("Enter Menu Selection: "))
+
+        if selection == 0: #breaks both while loops if user enters 0
+            print("\nThanks for using this calculator. Goodbye!")
+            outsideLoop = False
+            break
+        if selection == 1: #performs the addition calculation and updates numCalculations and sumCalculations
+            op1 = float(input("Enter first operand: "))
+            op2 = float(input("Enter second operand: "))
+            currentResult = op1 + op2
+            numCalculations += 1
+            sumCalculations += currentResult
+            print("")
+            break
+        if selection == 2: #performs the subtraction calculation and updates numCalculations and sumCalculations
+            op1 = float(input("Enter first operand: "))
+            op2 = float(input("Enter second operand: "))
+            currentResult = op1 - op2
+            numCalculations += 1
+            sumCalculations += currentResult
+            print("")
+            break
+        if selection == 3: #performs the multiplication calculation and updates numCalculations and sumCalculations
+            op1 = float(input("Enter first operand: "))
+            op2 = float(input("Enter second operand: "))
+            currentResult = op1 * op2
+            numCalculations += 1
+            sumCalculations += currentResult
+            print("")
+            break
+        if selection == 4: #performs the division calculation and updates numCalculations and sumCalculations
+            op1 = float(input("Enter first operand: "))
+            op2 = float(input("Enter second operand: "))
+            currentResult = op1 / op2
+            numCalculations += 1
+            sumCalculations += currentResult
+            print("")
+            break
+        if selection == 5: #performs the exponentiation calculation and updates numCalculations and sumCalculations
+            op1 = float(input("Enter first operand: "))
+            op2 = float(input("Enter second operand: "))
+            currentResult = math.pow(op1, op2)
+            numCalculations += 1
+            sumCalculations += currentResult
+            print("")
+            break
+        if selection == 6: #performs the logarithm calculation and updates numCalculations and sumCalculations
+            op1 = float(input("Enter first operand: "))
+            op2 = float(input("Enter second operand: "))
+            currentResult = math.log(op2, op1)
+            numCalculations += 1
+            sumCalculations += currentResult
+            print("")
+            break
+        if selection == 7: #performs the average calculation and prints numCalculations, sumCalculations, and average
+            if numCalculations != 0:
+                print("\nSum of calculations: " + str(round(sumCalculations,2)))
+                print("Number of calculations: " + str(numCalculations))
+                average = round((sumCalculations / numCalculations),2)
+                print("Average of calculations: " + str(average))
+            else:
+                print("Error: No calculations yet to average! \n")
+        else: #prompts user to enter another selection if their original one is not valid
+            print("\nError: Invalid selection!")
+            print("")
