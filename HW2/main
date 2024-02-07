@@ -1,0 +1,98 @@
+# import module and create a P1Random variable
+import p1_random as p1
+rng = p1.P1Random()
+
+# declare global variables
+outsideLoop = True
+numGame = 1
+dWins = 0
+pWins = 0
+tie = 0
+hand = 0
+
+# function that translates random number into corresponding card and prints value
+# also updates then prints the value of hand variable
+def determine_card():
+    global hand
+    if randomNum == 1:
+        hand += 1
+        print("Your card is a ACE!")
+        print("Your hand is: " + str(hand))
+    elif randomNum == 11:
+        hand += 10
+        print("Your card is a Jack!")
+        print("Your hand is: " + str(hand))
+    elif randomNum == 12:
+        hand += 10
+        print("Your card is a Queen!")
+        print("Your hand is: " + str(hand))
+    elif randomNum == 13:
+        hand += 10
+        print("Your card is a King!")
+        print("Your hand is: " + str(hand))
+    else:
+        hand += randomNum
+        print("Your card is a " + str(randomNum) + "!")
+        print("Your hand is: " + str(hand))
+
+# nested while loops that control the flow of the blackjack game
+while(outsideLoop):
+    print("START GAME #" + str(numGame) + "\n")
+    randomNum = rng.next_int(13) + 1
+    determine_card()
+# outside while loop generates random card then calls the determine_card() function
+    while(True):
+        if hand == 21: # check if player has blackjack
+            print("")
+            print("BLACKJACK! You win!\n")
+            pWins += 1
+            hand = 0
+            numGame += 1
+            break
+        elif hand > 21: # check if player busts
+            print("")
+            print("You exceeded 21! You lose.\n")
+            dWins += 1
+            hand = 0
+            numGame += 1
+            break
+# print selection options
+        print("")
+        print("1.  Get another card\n2.  Hold Hand\n3.  Print statistics\n4.  Exit\n")
+        option = int(input("Choose an option: "))
+        print("")
+
+# make sure user selected 1-4 for option
+        if option < 0 or option > 4:
+            print("Invalid input!\nPlease enter an integer value between 1 and 4.")
+            continue
+
+        if option == 1: # generate new card
+            randomNum = rng.next_int(13) + 1
+            determine_card()
+        elif option == 2: # hold hand and determine who wins
+            dealer = rng.next_int(11) + 16
+            print("Dealer's hand: " + str(dealer))
+            print("Your hand is: " + str(hand) + "\n")
+            if (dealer < hand) or (dealer > 21):
+                print("You win!\n")
+                pWins += 1
+            elif dealer > hand:
+                print("Dealer wins!\n")
+                dWins += 1
+            else:
+                tie += 1
+                print("It's a tie! No one wins!\n")
+            hand = 0
+            numGame += 1
+            break
+        elif option == 3: # print statistics by displaying some of the global variables program has been tracking
+            print("Number of Player wins: " + str(pWins))
+            print("Number of Dealer wins: " + str(dWins))
+            print("Number of tie games: " + str(tie))
+            print("Total # of games played is: " + str(numGame-1))
+            percentPWins = round(100 * pWins / (numGame-1), 2)
+            print("Percentage of Player wins: " + str(percentPWins) + "%")
+        elif option == 4: #stop program execution
+            outsideLoop = False
+            break
