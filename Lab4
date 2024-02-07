@@ -1,0 +1,43 @@
+import math
+
+def fibonacci(x): #function that uses recursive formula to determine fibonacci number at given position x
+    if x == 1: #fibonacci of 1 is 0
+        return 0
+    if x == 2: #fibonacci of 2 is 1
+        return 1
+    else:
+        return fibonacci(x-2) + fibonacci(x-1) #recursive call which sums the two numbers before x
+
+def is_prime(x): #function that determines whether parameter x is prime
+    if (x < 0) or (x == 0 or x == 1): #x is not prime if equal to 0, 1, or negative
+        return False
+    for i in range (2, x): #for loop goes through each possible number that x is divisible by
+        if x % i == 0: #if x is divisibile by i, it is not prime
+            return False
+    return True #if x is not divisible by any number other than itself, it is prime
+
+def print_prime_factors(x): #function that takes parameter x and returns its prime factorization
+    output = str(x) + " ="
+    firstFactor = True #flag that tracks whether the factor is the first one
+    while x % 2 == 0: #first factor out the 2s
+        if firstFactor:
+            output += " 2"
+            firstFactor = False
+        else:
+            output += " * 2"
+        x = x // 2
+    for i in range(3, int(math.sqrt(x))+1,2): #factor out odd numbers starting at 3
+        while x % i == 0:
+            if firstFactor:
+                output += " " + str(i)
+                firstFactor = False
+            else:
+                output += " * " + str(i)
+            x = x//i
+    if x > 2: #if remaining x value is prime number > 2 or no factors are found --> x equals original number
+        if firstFactor:
+            output += " " + str(x)
+        else:
+            output += " * " + str(x)
+#all if else statements are used to determine proper spacing and necessary "*" charectars in ouput
+    print(output)
