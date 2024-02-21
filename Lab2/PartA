@@ -1,0 +1,16 @@
+#prompt user to enter side 1, 2, and 3 then store them in respective variables as ints
+side1 = int(input("Enter side 1: "))
+side2 = int(input("Enter side 2: "))
+side3 = int(input("Enter side 3: "))
+largest = max(side1, side2, side3)
+
+#use conditionals to check if any combination of 2 sides squared equals the third side squared
+#if any of them are correct, print right angle, else print does not have right angle
+if (side1*side1 + side2*side2 == side3*side3):
+    print("The triangle has a right angle!")
+elif (side1*side1 + side3*side3 == side2*side2):
+    print("The triangle has a right angle!")
+elif (side2*side2 + side3*side3 == side1*side1):
+    print("The triangle has a right angle!")
+else:
+    print("This triangle does not have a right angle...")
