@@ -1,0 +1,30 @@
+#tell user the available currencies
+print("Available Currencies: A)USD B)CAD C)YEN")
+
+#promt user to enter the amount, starting currency, and desired currency and store in vars
+amount = float(input("Enter transaction amount: "))
+cur1 = input("Transcation currency: ")
+cur2 = input("Currency to convert to: ")
+
+#use conditionals to determine which transfer is taking place then do required calculation
+#print converted value 
+if (cur1 == "A" and cur2 == "B"):
+    newVal = round(amount * 1.24, 2)
+    print("Converted value: " + str(newVal) + " CAD")
+elif (cur1 == "A" and cur2 == "C"):
+    newVal = round(amount * 108.59, 2)
+    print("Converted value " + str(newVal) + " YEN")
+elif (cur1 == "B" and cur2 == "A"):
+    newVal = round(amount / 1.24, 2)
+    print("Converted value " + str(newVal) + " USD")
+elif (cur1 == "B" and cur2 == "C"):
+    newVal = round((amount / 1.24) * 108.59, 2)
+    print("Converted value " + str(newVal) + " YEN")
+elif (cur1 == "C" and cur2 == "A"):
+    newVal = round(amount / 108.59, 2)
+    print("Converted value " + str(newVal) + " USD")
+elif (cur1 == "C" and cur2 == "B"):
+    newVal = round((amount / 108.59) * 1.24, 2)
+    print("Converted value " + str(newVal) + " CAD")
+else:
+    print("Conversion not needed...")
