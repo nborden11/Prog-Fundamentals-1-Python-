@@ -1,0 +1,11 @@
+# prompt user to input r1, r2, and r3 values then store them in their respective variables
+r1 = float(input("What is the value of R1? "))
+r2 = float(input("What is the value of R2? "))
+r3 = float(input("What is the value of R3? "))
+
+# calculate equivalent resistance by using given formula and round to two decimal places
+# store calculation in the resistance variable
+resistance = round((1/((1/r1)+(1/r2)+(1/r3))), 2)
+
+# output the equivalent resistance
+print(f"The equivalent resistance is {resistance} ohms")
