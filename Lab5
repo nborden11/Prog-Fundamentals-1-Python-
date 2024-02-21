@@ -1,0 +1,72 @@
+def hex_char_decode(digit): #Decodes a single hexadecimal digit and returns its value.
+    if digit  == "1" or digit == "2" or digit == "3" or digit == "4" or digit == "5" or digit == "6" or digit == "7" or digit == "8" or digit == "9":
+        return int(digit) #return asscoiate char 1-9
+    elif digit == "A" or digit == "a": #return 'A' for 10, 'B' for 11, etc.
+        return 10
+    elif digit == "B" or digit == "b":
+        return 11
+    elif digit == "C" or digit == "c":
+        return 12
+    elif digit == "D" or digit == "d":
+        return 13
+    elif digit == "E" or digit == "e":
+        return 14
+    elif digit == "F" or digit == "f":
+        return 15
+
+def hex_string_decode(hex): #Decodes an entire hexadecimal string and returns its value.
+    result = 0
+    if hex.startswith("0x") or hex.startswith("0X"):
+        hex = hex[2:] #remove the prefix
+    for i in range(0, len(hex)): #go through hexadecimal string, compute each digit, and add to result
+        result = result * 16 + hex_char_decode(hex[i])
+    return result
+
+def binary_string_decode(binary): #Decodes a binary string and returns its value.
+    result = 0
+    if binary.startswith("0b") or binary.startswith("0B"):
+        binary = binary[2:] #remove the prefix
+    for i in binary: #go through binary number string and compute integer equivilent
+        result = result * 2 + int(i)
+    return result
+def binary_to_hex(binary): #Decodes a binary string, re-encodes it as hexadecimal, and returns the hexadecimal string.
+    binaryVal = binary_string_decode(binary) #convert from binary string to int
+    conversion = ""
+    if binaryVal == 0: #check if input is 0
+        return '0'
+    while(binaryVal!=0): #encode each integer digit as hexadecmial
+        digit = binaryVal%16
+        binaryVal = binaryVal//16
+        if 0 <= digit <=9:
+            conversion = str(digit) + conversion
+        elif digit == 10:
+            conversion = 'A' + conversion
+        elif digit == 11:
+            conversion = 'B' + conversion
+        elif digit == 12:
+            conversion = 'C' + conversion
+        elif digit == 13:
+            conversion = 'D' + conversion
+        elif digit == 14:
+            conversion = 'E' + conversion
+        elif digit == 15:
+            conversion = 'F' + conversion
+    return conversion
+
+while(True): #repeating menu output
+    print("Decoding Menu\n-------------\n1. Decode hexadecimal\n2. Decode binary\n3. Convert binary to hexadecimal\n4. Quit\n")
+    choice = int(input("Please enter an option: "))
+    if choice == 1: #convert from hexidecimal to integer
+        num = input("Please enter the numeric string to convert: " )
+        print("Result:", hex_string_decode(num))
+        print("")
+    if choice == 2: #convert from binary to integer
+        num = input("Please enter the numeric string to convert: ")
+        print("Result:", binary_string_decode(num))
+        print("")
+    if choice == 3: #convert binary to hexidecimal
+        num = input("Please enter the numeric string to convert: ")
+        print("Result:", binary_to_hex(num))
+        print("")
+    if choice == 4: #quit program
+        break
