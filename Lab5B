@@ -39,15 +39,17 @@ def check_if_winner(board, col, row, chip_type): #uses counter variables to chec
 def main():
     # main game output
     height = int(input("What would you like the height of the board to be? "))
-    length = int(input("What would you like the height of the board to be? "))
+    length = int(input("What would you like the length of the board to be? "))
     board = initialize_board(height, length)
     print_board(board)
 
     print("")
-    p1Symbol = input("Player 1: ")
-    p2Symbol = input("Player 2: ")
+    p1Symbol = "x"
+    p2Symbol = "o"
+    print("Player 1: x")
+    print("Player 2: o")
 
-    while (True):
+    while True:
         # Player 1 chip placement choice
         print("")
         p1Choice = int(input("Player 1: Which column would you like to choose? "))
@@ -56,6 +58,16 @@ def main():
         if check_if_winner(board, p1Choice, p1Row, p1Symbol):
             print("\nPlayer 1 won the game!")
             break
+        else:
+            check = True
+            for row in board:
+                if "-" in row:
+                    check = False
+                    break
+            if check:
+                print("\nDraw. Nobody wins.")
+                break
+
 
         # Player 2 chip placement choice
         print("")
@@ -65,6 +77,15 @@ def main():
         if check_if_winner(board, p2Choice, p2Row, p2Symbol):
             print("\nPlayer 2 won the game!")
             break
+        else:
+            check = True
+            for row in board:
+                if "-" in row:
+                    check = False
+                    break
+            if check:
+                print("\nDraw. Nobody wins.")
+                break
 
 if __name__ == "__main__":
     main()
