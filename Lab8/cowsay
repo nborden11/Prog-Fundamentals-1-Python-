@@ -1,0 +1,45 @@
+import sys
+from heifer_generator import HeiferGenerator
+from dragon import Dragon
+
+def list_cows(cows): #function that lists names of all available cows
+    cowsAval = "Cows available: "
+    for cow in cows:
+        cowsAval += cow.name + " "
+    return cowsAval
+
+def find_cow(name, cows): #function to find cow object by name
+    for cow in cows:
+        if cow.name == name:
+            return cow
+    return None
+
+if __name__ == '__main__':
+    cows = HeiferGenerator.get_cows()
+    args = sys.argv
+    if sys.argv[1] == "-l": #check if first argument is l
+        print(list_cows(cows))
+    elif sys.argv[1] == "-n": #check if first argument is n
+        match = find_cow(sys.argv[2], cows)
+        if match is not None:
+            cow_str = ""
+            for i in range(3, len(sys.argv)):
+                cow_str += sys.argv[i] + " "
+            print(cow_str)
+            print(match.image)
+            if isinstance(match, Dragon):
+                if match.can_breathe_fire():
+                    print("This dragon can breathe fire.")
+                else:
+                    print("This dragon cannot breathe fire.")
+
+        else: #when first argument is neither l nor n
+            print("Could not find " + sys.argv[2] + " cow!")
+    else:
+        cow_str = ""
+        for i in range(1, len(sys.argv)):
+            cow_str += sys.argv[i]
+            cow_str += " "
+        print(cow_str)
+        print(cows[0].image)
+        cow = sys.argv[2]
