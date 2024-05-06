@@ -1,0 +1,33 @@
+def make_image(pattern, size, filename):
+    with open(filename, "w") as f:
+        pattern(size, file = f)
+
+def pattern1(size, file = None):
+    print(f"P2 {size} {size}", file = file)
+    for i in range(size+1):
+        for j in range(size+1):
+            print(j, end=" ", file=file)
+        print(file=file)
+
+def pattern2(size, file = None):
+    print(f"P2 {size} {size}", file = file)
+    for i in range(size+1):
+        for j in range(size+1):
+            print(i, end=" ", file=file)
+        print(file=file)
+
+def pattern3(size, file = None):
+    print(f"P2 {size} {size}", file = file)
+    for i in range(size+1):
+        for j in range(size+1):
+            print((i+j)/2, end=" ", file=file)
+        print(file=file)
+
+def pattern4(size, file = None):
+    print(f"P2 {size} {size}", file = file)
+    for i in range(size+1):
+        for j in range(size+1):
+            print(((j+j)/2 + (i+i)/2)/4, end=" ", file=file)
+        print(file=file)
+
+make_image(pattern1, 100, pattern1.txt)
